@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>La Plata - CASCO URBANO</name>
+    <description>Mapa de peligrosidad de La Plata. Elaboración: ADA con datos de base del Plan de reducción de riesgo por inundaciones (Convenio UNLP- MLP.- Año 2019 – 1a Etapa. ISBN 978-950-34-1856-7)</description>
+    <NetworkLink>
+      <name>La Plata - CASCO URBANO</name>
+      <Link>
+        <href><![CDATA[https://www.google.com/maps/d/u/0/kml?forcekml=1&mid=1v-NU8bwhXDXXHWgNOWcd1p4WpvkqULo]]></href>
+      </Link>
+    </NetworkLink>
+  </Document>
+</kml>
