@@ -4,6 +4,11 @@
 
 Este proyecto tiene como fin, a partir de un mapa de peligrosidad de inundaciones de la ciudad de La Plata,  detectar la densidad poblacional de dicho lugar y hallar potenciales clientes que puedan acceder a un seguro contra inundaciones. En tal proyecto se mostrará lo siguiente:
 
+* Conversión de un archivo .kml en .geojson de mapa de peligrosidad de zonas inundables obtenida en https://riesgohidrico.ada.gba.gov.ar/inicio/mapas-de-peligrosidad-la-plata/
+
+* Sección de densidad poblacional de la ciudad de La Plata obtenida de
+* 
+
 
 # Cómo instalar este proyecto en Python
 
