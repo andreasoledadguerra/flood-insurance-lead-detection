@@ -1,4 +1,8 @@
-import geopandas as gpd
+import geopandas as 
+
+
+CRS_4326 = 4326
+
 
 def convert_kml_to_geojson(kml_file: str, output_file: str) -> None:
     """
@@ -17,3 +21,4 @@ def convert_kml_to_geojson(kml_file: str, output_file: str) -> None:
     return output_file
 
  pass
+
