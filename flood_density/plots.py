@@ -1,3 +1,5 @@
+import geopandas as gpd
+
 def convert_kml_to_geojson(kml_file: str, output_file: str) -> None:
     """
     Convert a KML file to GeoJSON format.
