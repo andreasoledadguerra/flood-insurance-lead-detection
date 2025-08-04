@@ -12,9 +12,9 @@ def extract_city_bounds_from_dataframe_to_geodataframe(df: pd.DataFrame, lat_col
     return gdf
 
 
-def extract_city_bounds(gdf: gpd.GeoDataFrame) -> Dict[str, float]:    
+def extract_city_bounds(df: pd.DataFrame) -> Dict[str, float]:    
 # Extraer límites
-    minx, miny, maxx, maxy = gdf.total_bounds
+    minx, miny, maxx, maxy = df.total_bounds
 
     return {
         "x_min": minx,
