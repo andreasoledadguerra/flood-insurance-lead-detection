@@ -17,8 +17,8 @@ def extract_city_bounds(gdf: gpd.GeoDataFrame) -> Dict[str, float]:
     minx, miny, maxx, maxy = gdf.total_bounds
 
     return {
-        "west_longitude": minx,
-        "south_latitude": miny,
-        "east_longitude": maxx,
-        "north_latitude": maxy
+        "x_min": minx,
+        "y_min": miny,
+        "x_max": maxx,
+        "y_max": maxy
     }
