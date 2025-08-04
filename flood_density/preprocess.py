@@ -1,6 +1,8 @@
 import pandas as pd
 import geopandas as gpd
 from shapely.geometry import Point
+from typing import Dict
+
 
 def extract_city_bounds_from_dataframe_to_geodataframe(df: pd.DataFrame, lat_col: str, lon_col: str) -> gpd.GeoDataFrame:
 
