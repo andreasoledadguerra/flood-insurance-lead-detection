@@ -3,6 +3,7 @@ import geopandas as gpd
 from shapely.geometry import Point,Polygon
 from typing import Dict
 
+CRS_4326 = 4326
 
 def extract_city_bounds(gdf: gpd.GeoDataFrame) -> Dict[str,float]:
     # Extraer límites
@@ -43,6 +44,15 @@ def extract_bounds_polygon(coordinates: Dict[str, float]) -> Polygon:
         (coordinates["x_min"], coordinates["y_max"]),   # NW (noroeste)
         (coordinates["x_min"], coordinates["y_min"])    # Cerrar polígono
     ])
+
+
+# Convertir el polìgono en un geodataframe
+def polygon_to_geodataframe(polygon: Polygon, crs: CRS_4326) -> gpd.GeoDataFrame:
+
+    return gpd.GeoDataFrame(
+        geometry=[polygon],
+        crs=crs  # CRS WGS 84
+    )
 
 def extract_city_bounds_from_dataframe_to_geodataframe(df: pd.DataFrame, lat_col: str, lon_col: str) -> gpd.GeoDataFrame:
 
