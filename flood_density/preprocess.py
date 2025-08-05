@@ -46,13 +46,18 @@ def extract_bounds_polygon(coordinates: Dict[str, float]) -> Polygon:
     ])
 
 
-# Convertir el polìgono en un geodataframe
+# Convertir el polígono en un geodataframe
 def polygon_to_geodataframe(polygon: Polygon, crs: CRS_4326) -> gpd.GeoDataFrame:
 
     return gpd.GeoDataFrame(
         geometry=[polygon],
         crs=crs  # CRS WGS 84
     )
+
+
+def convert_gdf_to_geojson(gdf: gpd.GeoDataFrame, output_file: str) -> None:
+    gdf.to_file(output_file, driver='GeoJSON')
+    gdf.plot()
 
 def extract_city_bounds_from_dataframe_to_geodataframe(df: pd.DataFrame, lat_col: str, lon_col: str) -> gpd.GeoDataFrame:
 
