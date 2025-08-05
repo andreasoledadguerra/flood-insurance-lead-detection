@@ -1,7 +1,7 @@
 import pandas as pd
 import geopandas as gpd
 from shapely.geometry import Point,Polygon
-from typing import Dict
+from typing import Dict,List,Tuple
 
 CRS_4326 = 4326
 
@@ -14,8 +14,6 @@ def extract_city_bounds(gdf: gpd.GeoDataFrame) -> Dict[str,float]:
         "x_max": maxx,
         "y_max": maxy
     }
-
-
 
 
 # Function to extract data from a specific city in the complete dataset
@@ -58,6 +56,14 @@ def polygon_to_geodataframe(polygon: Polygon, crs: CRS_4326) -> gpd.GeoDataFrame
 def convert_gdf_to_geojson(gdf: gpd.GeoDataFrame, output_file: str) -> None:
     gdf.to_file(output_file, driver='GeoJSON')
     gdf.plot()
+
+#Function that convert dictionary in list of tuples
+def dict_to_tuple(dic: dict) -> List[Tuple[str,float]]:
+    tup = []
+    for key,value in dic.items():
+        tup.append((key, value))
+    return tup
+
 
 def extract_city_bounds_from_dataframe_to_geodataframe(df: pd.DataFrame, lat_col: str, lon_col: str) -> gpd.GeoDataFrame:
 
