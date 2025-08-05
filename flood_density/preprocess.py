@@ -57,13 +57,6 @@ def convert_gdf_to_geojson(gdf: gpd.GeoDataFrame, output_file: str) -> None:
     gdf.to_file(output_file, driver='GeoJSON')
     gdf.plot()
 
-#Function that convert dictionary in list of tuples
-def dict_to_tuple(dic: dict) -> List[Tuple[str,float]]:
-    tup = []
-    for key,value in dic.items():
-        tup.append((key, value))
-    return tup
-
 
 def extract_city_bounds_from_dataframe_to_geodataframe(df: pd.DataFrame, lat_col: str, lon_col: str) -> gpd.GeoDataFrame:
 
