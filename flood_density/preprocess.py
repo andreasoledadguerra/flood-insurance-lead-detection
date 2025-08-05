@@ -4,17 +4,18 @@ from shapely.geometry import Point
 from typing import Dict
 
 
-def extract_city_bounds(df: pd.DataFrame) -> Dict[str, float]:    
-# Extraer límites
-    minx, miny = df['X'].min(), df['Y'].min()
-    maxx, maxy = df['X'].max(), df['Y'].max()
-
+def extract_city_bounds(gdf: gpd.GeoDataFrame) -> Dict[str,float]:
+    # Extraer límites
+    minx, miny, maxx, maxy = gdf.total_bounds
     return {
         "x_min": minx,
         "y_min": miny,
         "x_max": maxx,
         "y_max": maxy
     }
+
+
+
 
 # Function to extract data from a specific city in the complete dataset
 def extract_city_data(df: pd.DataFrame, city_name: str, bounds_dict: dict) -> pd.DataFrame:
