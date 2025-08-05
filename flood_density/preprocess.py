@@ -1,6 +1,6 @@
 import pandas as pd
 import geopandas as gpd
-from shapely.geometry import Point,Polygon
+from shapely.geometry import box, Point,Polygon
 from typing import Dict,List,Tuple
 
 CRS_4326 = 4326
