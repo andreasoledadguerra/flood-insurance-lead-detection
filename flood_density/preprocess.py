@@ -1,6 +1,6 @@
 import pandas as pd
 import geopandas as gpd
-from shapely.geometry import Point
+from shapely.geometry import Point,Polygon
 from typing import Dict
 
 
@@ -34,6 +34,15 @@ def extract_city_data(df: pd.DataFrame, city_name: str, bounds_dict: dict) -> pd
     
     return city_data
 
+def extract_bounds_polygon(coordinates: Dict[str, float]) -> Polygon:
+    
+    return Polygon([
+        (coordinates["x_min"], coordinates["y_min"]),   # SW (suroeste)
+        (coordinates["x_max"], coordinates["y_min"]),   # SE (sureste)  
+        (coordinates["x_max"], coordinates["y_max"]),   # NE (noreste)
+        (coordinates["x_min"], coordinates["y_max"]),   # NW (noroeste)
+        (coordinates["x_min"], coordinates["y_min"])    # Cerrar polígono
+    ])
 
 def extract_city_bounds_from_dataframe_to_geodataframe(df: pd.DataFrame, lat_col: str, lon_col: str) -> gpd.GeoDataFrame:
 
