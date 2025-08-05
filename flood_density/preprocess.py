@@ -57,6 +57,15 @@ def convert_gdf_to_geojson(gdf: gpd.GeoDataFrame, output_file: str) -> None:
     gdf.to_file(output_file, driver='GeoJSON')
     gdf.plot()
 
+#Function that convert dictionary of coordinates in polygon
+def coordinates_to_box(coord : dict)-> Polygon:
+
+    return box(
+        coord['x_min'],
+        coord['y_min'],
+        coord['x_max'],
+        coord['y_max'],
+    )
 
 def extract_city_bounds_from_dataframe_to_geodataframe(df: pd.DataFrame, lat_col: str, lon_col: str) -> gpd.GeoDataFrame:
 
