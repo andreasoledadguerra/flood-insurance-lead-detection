@@ -67,6 +67,13 @@ def coordinates_to_box(coord : dict)-> Polygon:
         coord['y_max'],
     )
 
+def points_geocoordinates(df: pd.DataFrame) -> Polygon:
+    # Crear geometría de puntos usando X,Y como longitud,latitud
+    geometry = [Point(xy) for xy in zip(df['X'], df['Y'])]
+
+    return geometry
+
+
 def extract_city_bounds_from_dataframe_to_geodataframe(df: pd.DataFrame, lat_col: str, lon_col: str) -> gpd.GeoDataFrame:
 
     geometry = [Point(xy) for xy in zip(df[lon_col], df[lat_col])]
