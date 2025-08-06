@@ -73,6 +73,10 @@ def points_geocoordinates(df: pd.DataFrame) -> Polygon:
 
     return geometry
 
+def convert_points_in_gdf(points_list: List[Point], crs=CRS_4326) -> gpd.GeoDataFrame:
+        gdf= gpd.GeoDataFrame(geometry= points_list, crs=crs)
+        return gdf
+    
 
 def extract_city_bounds_from_dataframe_to_geodataframe(df: pd.DataFrame, lat_col: str, lon_col: str) -> gpd.GeoDataFrame:
 
