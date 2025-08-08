@@ -44,4 +44,4 @@ Email: andrea.guerral@outlook.com.ar
 
 # Agradecimientos 
 
-Este proyecto ha sido llevado adelante gracias a la supervisión y apoyo inconcondicional de mi amigo y mentor Alejo Prieto Dávalos (https://github.com/AlejoPrietoDavalos). 
+Este proyecto ha sido llevado adelante gracias a la supervisión y apoyo incondicional de mi amigo y mentor Alejo Prieto Dávalos (https://github.com/AlejoPrietoDavalos). 
