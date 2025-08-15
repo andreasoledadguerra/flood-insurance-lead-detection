@@ -17,7 +17,7 @@ def get_bounds_xy_min_max(gdf: gpd.GeoDataFrame) -> Dict[str,float]:
 
 
 # Function to extract data from a specific city in the complete dataset
-def extract_city_data(df: pd.DataFrame, city_name: str, bounds_dict: dict) -> pd.DataFrame:
+def extract_city_data(df: pd.DataFrame, city_name: str, bounds_dict: dict, with_save: bool = True) -> pd.DataFrame:
 
     # Filter data based on city boundaries
     city_data = df[
