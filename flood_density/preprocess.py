@@ -53,9 +53,9 @@ def polygon_to_geodataframe(polygon: Polygon, crs: CRS_4326) -> gpd.GeoDataFrame
     )
 
 
-def convert_gdf_to_geojson(gdf: gpd.GeoDataFrame, output_file: str) -> None:
-    gdf.to_file(output_file, driver='GeoJSON')
-    gdf.plot()
+def gdf_to_geojson(gdf: gpd.GeoDataFrame) -> str:
+    return gdf.to_json()
+
 
 #Function that convert dictionary of coordinates in polygon
 def coordinates_to_box(coord : dict)-> Polygon:
