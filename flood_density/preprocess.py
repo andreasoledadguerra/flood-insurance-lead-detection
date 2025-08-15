@@ -1,7 +1,7 @@
 import pandas as pd
 import geopandas as gpd
-from shapely.geometry import box, Point,Polygon
-from typing import Dict,List,Tuple
+from shapely.geometry import box, Point, Polygon
+from typing import Dict, List, Tuple
 
 CRS_4326 = 4326
 
@@ -76,9 +76,9 @@ def points_geocoordinates(df: pd.DataFrame) -> Polygon:
 def convert_points_in_gdf(points_list: List[Point], crs=CRS_4326) -> gpd.GeoDataFrame:
         gdf= gpd.GeoDataFrame(geometry= points_list, crs=crs)
         return gdf
-        
 
-def extract_city_bounds_from_dataframe_to_geodataframe(df: pd.DataFrame, lat_col: str, lon_col: str) -> gpd.GeoDataFrame:
+
+def extract_city_bounds_from_df_to_gdf(df: pd.DataFrame, lat_col: str, lon_col: str) -> gpd.GeoDataFrame:
 
     geometry = [Point(lon, lat) for lon, lat in zip(df[lon_col], df[lat_col])]
     gdf = gpd.GeoDataFrame(df.copy(), geometry=geometry, crs="EPSG:4326")
