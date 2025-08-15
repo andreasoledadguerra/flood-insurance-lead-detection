@@ -71,7 +71,7 @@ def points_geocoordinates(df: pd.DataFrame) -> Polygon:
     # Crear geometría de puntos usando X,Y como longitud,latitud
     geometry = [Point(xy) for xy in zip(df['X'], df['Y'])]
 
-    return geometry
+    return Polygon(geometry)
 
 def convert_points_in_gdf(points_list: List[Point], crs=CRS_4326) -> gpd.GeoDataFrame:
     gdf = gpd.GeoDataFrame(geometry=points_list, crs=crs)
