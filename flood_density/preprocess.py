@@ -84,3 +84,12 @@ def extract_city_bounds_from_df_to_gdf(df: pd.DataFrame, lat_col: str, lon_col: 
     gdf = gpd.GeoDataFrame(df.copy(), geometry=geometry, crs="EPSG:4326")
 
     return gdf
+
+def clip_density_to_urban_area(gdf_1: gpd.GeoDataFrame, gdf_2: gpd.GeoDataFrame) -> gpd.GeoDataFrame: 
+    # Usar uniones espaciales para mantener solo puntos dentro del casco urbano
+    points_in_casco = gpd.sjoin(gdf_1, gdf_2, how='inner', predicate='intersects')
+    
+    # Limpiar columnas duplicadas del join 
+    points_in_casco = points_in_casco.drop(columns=[col for col in points_in_casco.columns if col.endswith('_right')]) 
+    
+    return points_in_casco
