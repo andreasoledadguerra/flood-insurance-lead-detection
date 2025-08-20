@@ -5,6 +5,10 @@ from typing import Dict, List, Tuple
 
 CRS_4326 = 4326
 
+def convert_kml_to_gdf(kml_file: str) -> gpd.GeoDataFrame:
+    gdf = gpd.read_file(kml_file, driver="KML")
+    return gdf
+
 def get_bounds_xy_min_max(gdf: gpd.GeoDataFrame) -> Dict[str,float]:
     # Extraer límites
     minx, miny, maxx, maxy = gdf.total_bounds
