@@ -7,19 +7,8 @@ from typing import List
 
 CRS_4326 = 4326
 
-#def convert_kml_to_gdf(kml_file: str) -> gpd.GeoDataFrame:
-    #gdf = gpd.read_file(kml_file, driver="KML")
-    #return gdf
-
-#def export_to_geojson(gdf: gpd.GeoDataFrame, output_path: str) -> str:
-    #geojson = gdf.to_file(output_path, driver='GeoJSON')
-
-    #return geojson
-
-#def plot_gdf(gdf: gpd.GeoDataFrame, str : "La Plata Geospatial Data") -> None:
-    
-    #return gdf.plot()
-
+def plot_gdf(gdf: gpd.GeoDataFrame):
+    return gdf.plot()
 
 def city_bounds_and_density_plot(gdf: gpd.GeoDataFrame, centroides: np.ndarray, values_density: np.ndarray, bound: List[float]) -> plt.Figure:
     
