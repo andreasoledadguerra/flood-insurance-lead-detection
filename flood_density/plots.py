@@ -2,7 +2,6 @@ import geopandas as gpd
 import numpy as np
 import matplotlib.pyplot as plt
 
-
 from typing import List
 
 CRS_4326 = 4326
