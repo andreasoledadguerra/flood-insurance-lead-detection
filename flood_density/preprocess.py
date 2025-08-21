@@ -5,6 +5,7 @@ from typing import Dict, List, Tuple
 
 CRS_4326 = 4326
 
+
 def convert_kml_to_gdf(kml_file: str) -> gpd.GeoDataFrame:
     gdf = gpd.read_file(kml_file, driver="KML")
     return gdf
@@ -101,3 +102,23 @@ def clip_density_to_urban_area(gdf_1: gpd.GeoDataFrame, gdf_2: gpd.GeoDataFrame)
     points_in_casco = points_in_casco.drop(columns=[col for col in points_in_casco.columns if col.endswith('_right')]) 
     
     return points_in_casco
+
+def create_kriging_kernel(constant_value=1.0, length_scale=1000.0, noise_level=0.1,
+                          length_scale_bounds=(1e-5, 1e5), noise_level_bounds=(1e-10, 1e3)):
+    """
+    Crea un kernel para un modelo de Kriging (Gaussian Process).
+
+    Parámetros:
+    - constant_value: valor inicial del ConstantKernel
+    - length_scale: valor inicial del RBF kernel
+    - noise_level: valor inicial del WhiteKernel
+    - length_scale_bounds: límites para optimización del RBF
+    - noise_level_bounds: límites para optimización del WhiteKernel
+
+    Retorna:
+    - kernel: objeto kernel listo para usar en GaussianProcessRegressor
+    """
+    kernel = ConstantKernel(constant_value) * RBF(length_scale=length_scale,
+                                                  length_scale_bounds=length_scale_bounds) + \
+             WhiteKernel(noise_level=noise_level, noise_level_bounds=noise_level_bounds)
+    return kernel
