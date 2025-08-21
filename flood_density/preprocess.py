@@ -57,7 +57,7 @@ def extract_bounds_polygon(coordinates: Dict[str, float]) -> Polygon:
 
 
 # Convertir el polígono en un geodataframe
-def polygon_to_geodataframe(polygon: Polygon, crs: CRS_4326) -> gpd.GeoDataFrame:
+def polygon_to_gdf(polygon: Polygon, crs= CRS_4326) -> gpd.GeoDataFrame:
 
     return gpd.GeoDataFrame(
         geometry=[polygon],
