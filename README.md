@@ -6,7 +6,10 @@ Este proyecto tiene como fin, a partir de un mapa de peligrosidad de inundacione
 
 * Conversión de un archivo .kml en .geojson de mapa de peligrosidad de zonas inundables obtenida de la página https://riesgohidrico.ada.gba.gov.ar/inicio/mapas-de-peligrosidad-la-plata/ .
 
+
 * Sección de densidad poblacional de la ciudad de La Plata obtenida de la página https://hub.worldpop.org/geodata/summary?id=40066 usando el método Kriging.
+
+* Conversión del archivo GeoJson a .tif con el fin de visualizar el procesamiento de datos en QGIS.
 
 
 # Cómo instalar este proyecto en Python
@@ -41,4 +44,4 @@ Email: andrea.guerral@outlook.com.ar
 
 # Agradecimientos 
 
-Este proyecto ha sido llevado adelante gracias a la supervisión y apoyo inconcondicional de mi amigo y mentor Alejo Prieto Dávalos (https://github.com/AlejoPrietoDavalos). 
+Este proyecto ha sido llevado adelante gracias a la supervisión y apoyo incondicional de mi amigo y mentor Alejo Prieto Dávalos (https://github.com/AlejoPrietoDavalos). 
