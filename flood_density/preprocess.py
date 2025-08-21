@@ -38,11 +38,12 @@ def extract_city_data(df: pd.DataFrame, city_name: str, bounds_dict: dict, with_
         (df['Y'] >= bounds_dict['y_min']) & 
         (df['Y'] <= bounds_dict['y_max'])
     ]
-    
+      
     # Save filtered data to CSV file
-    output_file = f"{city_name.lower().replace(' ', '_')}_population_2020.csv"
-    city_data.to_csv(output_file, index=False)
-    
+    if with_save:
+        output_file = f"{city_name.lower().replace(' ', '_')}_population_2020.csv"
+        city_data.to_csv(output_file, index=False)
+
     return city_data
 
 def extract_bounds_polygon(coordinates: Dict[str, float]) -> Polygon:
