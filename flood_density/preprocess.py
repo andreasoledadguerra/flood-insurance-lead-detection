@@ -2,6 +2,9 @@ import pandas as pd
 import geopandas as gpd
 from shapely.geometry import box, Point, Polygon
 from typing import Dict, List, Tuple
+from sklearn.gaussian_process import GaussianProcessRegressor
+from sklearn.gaussian_process.kernels import RBF, WhiteKernel, ConstantKernel
+
 
 CRS_4326 = 4326
 
