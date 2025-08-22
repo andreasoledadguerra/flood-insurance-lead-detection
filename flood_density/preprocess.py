@@ -1,5 +1,6 @@
 import pandas as pd
 import geopandas as gpd
+import numpy as np
 from shapely.geometry import box, Point, Polygon
 from typing import Dict, List, Tuple
 from sklearn.gaussian_process import GaussianProcessRegressor
@@ -106,6 +107,24 @@ def clip_density_to_urban_area(gdf_1: gpd.GeoDataFrame, gdf_2: gpd.GeoDataFrame)
     points_in_casco = points_in_casco.drop(columns=[col for col in points_in_casco.columns if col.endswith('_right')]) 
     
     return points_in_casco
+
+def prepare_coords(gdf: gpd.GeoDataFrame, value_column: str) -> np.ndarray:
+
+    # Extraer valores de una columna específica
+    values = gdf[value_column].values
+    print(f"Rango de valores: {values.min():.2f} - {values.max():.2f}")
+    
+    return values
+
+
+
+
+
+
+
+
+
+
 
 def create_kriging_kernel(constant_value=1.0, length_scale=1000.0, noise_level=0.1,
                           length_scale_bounds=(1e-5, 1e5), noise_level_bounds=(1e-10, 1e3)):
