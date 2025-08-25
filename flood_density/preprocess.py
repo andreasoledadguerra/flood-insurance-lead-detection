@@ -1,6 +1,8 @@
 import pandas as pd
 import geopandas as gpd
 import numpy as np
+
+
 from shapely.geometry import box, Point, Polygon
 from typing import Dict, List, Tuple
 from sklearn.gaussian_process import GaussianProcessRegressor
@@ -117,7 +119,12 @@ def prepare_coords(gdf: gpd.GeoDataFrame, value_column: str) -> np.ndarray:
     return values
 
 
+def prepare_centroids(gdf: gpd.GeoDataFrame) -> np.ndarray:
 
+    # Extraer centroides y convertir a un array de coordenadas
+    centroids = np.array([[point.x, point.y] for point in gdf.geometry.centroid])
+    
+    return centroids
 
 
 
