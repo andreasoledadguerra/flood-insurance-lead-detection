@@ -170,3 +170,9 @@ def create_kriging_kernel(constant_value=1.0, length_scale=1000.0, noise_level=0
     kernel = constant_kernel * rbf_kernel + noise_kernel
     
     return kernel
+
+
+# Generar el modelo GaussianProcessRegressor
+def create_gpr_model(kernel= kernel) -> GaussianProcessRegressor:
+    gpr = GaussianProcessRegressor(kernel=kernel, alpha=1e-6, n_restarts_optimizer=10)
+    return gpr
