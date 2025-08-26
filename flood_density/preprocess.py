@@ -176,3 +176,12 @@ def create_kriging_kernel(constant_value=1.0, length_scale=1000.0, noise_level=0
 def create_gpr_model(kernel: Kernel) -> GaussianProcessRegressor:
     gpr = GaussianProcessRegressor(kernel=kernel, alpha=1e-6, n_restarts_optimizer=10)
     return gpr
+
+def oned_to_2d(coords: np.ndarray, values: np.ndarray) ->  tuple[np.ndarray, np.ndarray]:
+    coords = np.array(coords)
+    if coords.ndim == 1:
+        coords = coords.reshape(-1, 1)
+    values = np.array(values)
+    if values.ndim == 1:
+        values = values.reshape(-1, 1)
+    return coords, values
