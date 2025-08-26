@@ -185,3 +185,16 @@ def oned_to_2d(coords: np.ndarray, values: np.ndarray) ->  tuple[np.ndarray, np.
     if values.ndim == 1:
         values = values.reshape(-1, 1)
     return coords, values
+
+
+def fit_gpr_model(
+    gpr: GaussianProcessRegressor, 
+    coords: np.ndarray, 
+    values: np.ndarray
+) -> GaussianProcessRegressor:
+    gpr.fit(coords, values)
+    return gpr
+
+#def fit_gpr_model(gpr: GaussianProcessRegressor,np.ndarray, np.ndarray]) -> GaussianProcessRegressor:
+#    gpr.fit(coords, values)
+#    return gpr
