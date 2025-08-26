@@ -6,7 +6,7 @@ import numpy as np
 from shapely.geometry import box, Point, Polygon
 from typing import Dict, List, Tuple
 from sklearn.gaussian_process import GaussianProcessRegressor
-from sklearn.gaussian_process.kernels import RBF, WhiteKernel, ConstantKernel
+from sklearn.gaussian_process.kernels import RBF, WhiteKernel, ConstantKernel, Kernel
 
 
 CRS_4326 = 4326
@@ -173,6 +173,6 @@ def create_kriging_kernel(constant_value=1.0, length_scale=1000.0, noise_level=0
 
 
 # Generar el modelo GaussianProcessRegressor
-def create_gpr_model(kernel= kernel) -> GaussianProcessRegressor:
+def create_gpr_model(kernel = kernel) -> GaussianProcessRegressor:
     gpr = GaussianProcessRegressor(kernel=kernel, alpha=1e-6, n_restarts_optimizer=10)
     return gpr
