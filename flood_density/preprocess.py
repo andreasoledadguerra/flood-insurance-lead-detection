@@ -198,3 +198,16 @@ def fit_gpr_model(
 #def fit_gpr_model(gpr: GaussianProcessRegressor,np.ndarray, np.ndarray]) -> GaussianProcessRegressor:
 #    gpr.fit(coords, values)
 #    return gpr
+
+def interpolate_grid(
+    bounds: Tuple[float, float, float, float],
+    step: int = 100
+) -> Tuple[np.ndarray, np.ndarray]:
+
+    # Crear malla con np.mgrid
+    grid_x, grid_y = np.mgrid[bounds[0]:bounds[2]:step*1j, bounds[1]:bounds[3]:step*1j]
+
+    # Crear coordenadas de la malla
+    grid_coords = np.column_stack([grid_x.ravel(), grid_y.ravel()])
+
+    return grid_x, grid_y, grid_coords
