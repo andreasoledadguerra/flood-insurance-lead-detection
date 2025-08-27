@@ -177,18 +177,13 @@ def create_gpr_model(kernel: Kernel) -> GaussianProcessRegressor:
     gpr = GaussianProcessRegressor(kernel=kernel, alpha=1e-6, n_restarts_optimizer=10)
     return gpr
 
-#def fit_gpr_model(
-#    gpr: GaussianProcessRegressor, 
-#    coords: np.ndarray, 
-#    values: np.ndarray
-#) -> GaussianProcessRegressor:
-#    coords = np.column_stack((x_train.ravel(), y_train.ravel()))
-#    gpr.fit(coords, values)
-#    return gpr
+# Ajustar el modelo GPR a los datos
+def fit_gpr_model(
+    gpr: GaussianProcessRegressor, coords: np.ndarray, values: np.ndarray) -> GaussianProcessRegressor:
+    
+    gpr.fit(coords, values)
+    return gpr
 
-#def fit_gpr_model(gpr: GaussianProcessRegressor,np.ndarray, np.ndarray]) -> GaussianProcessRegressor:
-#    gpr.fit(coords, values)
-#    return gpr
 
 def interpolate_grid(
     bounds: Tuple[float, float, float, float],
