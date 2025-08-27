@@ -55,18 +55,9 @@ def plot_kriging_results_with_basemap(gdf: gpd.GeoDataFrame,
     
     # Plotear superficie Kriging interpolada
     contour = ax.contourf(grid_x, grid_y, grid_z, levels=30, cmap='viridis', alpha=0.5)
-    
-
-    # Plotear los polígonos originales
-    casco_urbano_utm.plot(column='Z', 
-               cmap='viridis',
-               alpha=0.5,
-               edgecolor='black',
-               linewidth=1.0,
-               ax=ax)
 
     # Plotear los polígonos originales con bordes
-    casco_urbano_utm.plot(column='Z', 
+    gdf.plot(column='Z', 
                cmap='viridis',
                alpha=0.5,
                edgecolor='black',
@@ -87,7 +78,7 @@ def plot_kriging_results_with_basemap(gdf: gpd.GeoDataFrame,
     ax.set_ylim(bounds[1], bounds[3])
 
     #Mapa base más sutil
-    ctx.add_basemap(ax, crs=casco_urbano_utm.crs.to_string(),
+    ctx.add_basemap(ax, crs=gdf.crs.to_string(),
                    source=ctx.providers.CartoDB.Positron,
                    alpha = 0.9)
 
