@@ -213,3 +213,19 @@ def predict_grid(
     z, ss = model.predict(points, return_std=True)
 
     return z, ss
+
+def convert_to_2d_grid(
+    data: Tuple[np.ndarray, np.ndarray], 
+    grid_shape: Tuple[int, int]
+) -> Tuple[np.ndarray, np.ndarray]:
+
+    # Desempaquetar la tupla data
+    z, ss = data 
+
+    # Convertir a grillas 2D los valores predichos
+    z_2d = z.reshape(grid_shape)
+
+    # Convertir a grillas 2D las desviacciones estándar(incertidumbre)
+    ss_2d = ss.reshape(grid_shape)
+
+    return z_2d, ss_2d
