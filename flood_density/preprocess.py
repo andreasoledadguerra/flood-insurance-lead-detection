@@ -197,3 +197,19 @@ def interpolate_grid(
     grid_coords = np.column_stack([grid_x.ravel(), grid_y.ravel()])
 
     return grid_x, grid_y, grid_coords
+
+def predict_grid(
+    model: GaussianProcessRegressor, 
+    grid: Tuple[np.ndarray, np.ndarray, np.ndarray]
+) -> Tuple[np.ndarray, np.ndarray]:
+    
+    # Desempaquetar la tupla grid
+    grid_x, grid_y, _ = grid
+
+    # Preparar puntos para predicción
+    points = np.column_stack((grid_x.ravel(), grid_y.ravel()))
+    
+    # Predecir
+    z, ss = model.predict(points, return_std=True)
+
+    return z, ss
