@@ -110,7 +110,7 @@ def clip_density_to_urban_area(gdf_1: gpd.GeoDataFrame, gdf_2: gpd.GeoDataFrame)
     
     return points_in_casco
 
-def prepare_coords(gdf: gpd.GeoDataFrame, value_column: str) -> np.ndarray:
+def prepare_centroids(gdf: gpd.GeoDataFrame, value_column: str) -> np.ndarray:
 
     # Extraer valores de una columna específica
     values = gdf[value_column].values
@@ -119,7 +119,7 @@ def prepare_coords(gdf: gpd.GeoDataFrame, value_column: str) -> np.ndarray:
     return values
 
 
-def prepare_centroids(gdf: gpd.GeoDataFrame) -> np.ndarray:
+def prepare_coordinates(gdf: gpd.GeoDataFrame) -> np.ndarray:
 
     # Extraer centroides y convertir a un array de coordenadas
     centroids = np.array([[point.x, point.y] for point in gdf.geometry.centroid])
@@ -177,23 +177,24 @@ def create_gpr_model(kernel: Kernel) -> GaussianProcessRegressor:
     gpr = GaussianProcessRegressor(kernel=kernel, alpha=1e-6, n_restarts_optimizer=10)
     return gpr
 
-def oned_to_2d(coords: np.ndarray, values: np.ndarray) ->  tuple[np.ndarray, np.ndarray]:
-    coords = np.array(coords)
-    if coords.ndim == 1:
-        coords = coords.reshape(-1, 1)
-    values = np.array(values)
-    if values.ndim == 1:
-        values = values.reshape(-1, 1)
-    return coords, values
+#def oned_to_2d(coords: np.ndarray, values: np.ndarray) ->  tuple[np.ndarray, np.ndarray]:
+#    coords = np.array(coords)
+#    if coords.ndim == 1:
+#        coords = coords.reshape(-1, 1)
+#    values = np.array(values)
+#    if values.ndim == 1:
+#        values = values.reshape(-1, 1)
+#    return coords, values
 
 
-def fit_gpr_model(
-    gpr: GaussianProcessRegressor, 
-    coords: np.ndarray, 
-    values: np.ndarray
-) -> GaussianProcessRegressor:
-    gpr.fit(coords, values)
-    return gpr
+#def fit_gpr_model(
+#    gpr: GaussianProcessRegressor, 
+#    coords: np.ndarray, 
+#    values: np.ndarray
+#) -> GaussianProcessRegressor:
+#    coords = np.column_stack((x_train.ravel(), y_train.ravel()))
+#    gpr.fit(coords, values)
+#    return gpr
 
 #def fit_gpr_model(gpr: GaussianProcessRegressor,np.ndarray, np.ndarray]) -> GaussianProcessRegressor:
 #    gpr.fit(coords, values)
