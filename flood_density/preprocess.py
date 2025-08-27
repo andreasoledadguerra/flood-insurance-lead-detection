@@ -119,7 +119,7 @@ def prepare_centroids(gdf: gpd.GeoDataFrame, value_column: str) -> np.ndarray:
     return values
 
 
-def prepare_coordinates(gdf: gpd.GeoDataFrame) -> np.ndarray:
+def prepare_coords(gdf: gpd.GeoDataFrame) -> np.ndarray:
 
     # Extraer centroides y convertir a un array de coordenadas
     centroids = np.array([[point.x, point.y] for point in gdf.geometry.centroid])
