@@ -1,7 +1,10 @@
 import geopandas as gpd
 import numpy as np
 import matplotlib.pyplot as plt
+import contextily as ctx
 
+
+from pykrige.ok import OrdinaryKriging
 from typing import List,Tuple
 
 CRS_4326 = 4326
@@ -47,7 +50,7 @@ def plot_kriging_results_with_basemap(gdf: gpd.GeoDataFrame,
 
     fig, ax = plt.subplots(figsize=(10, 10))
 
-    # Obtener la superficie interpolada desde la función predict_fn
+    # Obtener la superficie interpolada
     grid_z, ss = kriging_result
     
     # Plotear superficie Kriging interpolada
