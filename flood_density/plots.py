@@ -2,7 +2,7 @@ import geopandas as gpd
 import numpy as np
 import matplotlib.pyplot as plt
 
-from typing import List
+from typing import List,Tuple
 
 CRS_4326 = 4326
 
