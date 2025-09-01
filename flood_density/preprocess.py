@@ -10,6 +10,7 @@ from sklearn.gaussian_process.kernels import RBF, WhiteKernel, ConstantKernel, K
 
 
 CRS_4326 = 4326
+CRS_32721 = 32721
 
 
 def convert_kml_to_gdf(kml_file: str) -> gpd.GeoDataFrame:
