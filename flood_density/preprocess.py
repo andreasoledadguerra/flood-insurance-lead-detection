@@ -235,3 +235,9 @@ def extract_grid_from_tuple(grid_data: Tuple[np.ndarray]) -> np.ndarray:
     grid_array = grid_data[0]
     
     return grid_array
+
+def prepare_geospatial_bounds(gdf: gpd.GeoDataFrame) -> np.ndarray:
+
+    # Obtener límites en coordenadas proyectadas
+    bounds_proj = gdf.total_bounds  # [xmin, ymin, xmax, ymax]
+    return bounds_proj
