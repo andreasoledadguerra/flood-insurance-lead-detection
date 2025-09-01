@@ -229,3 +229,9 @@ def convert_to_2d_grid(
     ss_2d = ss.reshape(grid_shape)
 
     return z_2d, ss_2d
+
+def extract_grid_from_tuple(grid_data: Tuple[np.ndarray]) -> np.ndarray:
+    
+    grid_array = grid_data[0]
+    
+    return grid_array
