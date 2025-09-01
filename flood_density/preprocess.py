@@ -241,3 +241,31 @@ def prepare_geospatial_bounds(gdf: gpd.GeoDataFrame) -> np.ndarray:
     # Obtener límites en coordenadas proyectadas
     bounds_proj = gdf.total_bounds  # [xmin, ymin, xmax, ymax]
     return bounds_proj
+
+def write_geotiff(grid_array: np.ndarray, 
+                  bounds_proj: np.ndarray, 
+                  filename: str, 
+                  crs_epsg: CRS_32721) -> str:
+    # Obtener dimensiones del array
+    height, width = grid_array.shape
+
+    # Calcular la transformación georreferenciada
+    transform = from_bounds(bounds_proj[0], bounds_proj[1], 
+                          bounds_proj[2], bounds_proj[3], 
+                          width, height)
+    
+    with rasterio.open(
+        filename,
+        'w',
+        driver='GTiff',
+        height=height,
+        width=width,
+        count=1,
+        dtype=grid_array.dtype,
+        crs=CRS.from_epsg(crs_epsg),
+        transform=transform,
+        compress='lzw'
+    ) as dst:
+        dst.write(grid_array, 1)
+    
+    return filename
