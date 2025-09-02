@@ -1,10 +1,14 @@
 import pandas as pd
 import geopandas as gpd
 import numpy as np
+import rasterio
 
 
 from shapely.geometry import box, Point, Polygon
+from rasterio.transform import from_bounds
+from rasterio.crs import CRS
 from typing import Dict, List, Tuple
+
 from sklearn.gaussian_process import GaussianProcessRegressor
 from sklearn.gaussian_process.kernels import RBF, WhiteKernel, ConstantKernel, Kernel
 
@@ -49,6 +53,7 @@ def extract_city_data(df: pd.DataFrame, city_name: str, bounds_dict: dict, with_
         city_data.to_csv(output_file, index=False)
 
     return city_data
+
 
 def extract_bounds_polygon(coordinates: Dict[str, float]) -> Polygon:
     
@@ -270,3 +275,19 @@ def write_geotiff(grid_array: np.ndarray,
         dst.write(grid_array, 1)
     
     return filename
+
+def run_kriging_pipeline(
+    grid_2d_lp: np.ndarray, 
+    gdf_la_plata_from_polygon: gpd.GeoDataFrame, 
+    step: int = 100
+) -> str:
+    
+    grid_lp = extract_grid_from_tuple(grid_2d_lp)
+    geo_bounds_lp = prepare_geospatial_bounds(gdf_la_plata_from_polygon)
+    geotiff_file = write_geotiff(
+        grid_lp, 
+        geo_bounds_lp, 
+        'kriging_densidad_poblacional.tif', 
+        32721
+    )
+    return geotiff_file
