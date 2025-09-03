@@ -116,10 +116,10 @@ def clip_density_to_urban_area(gdf_1: gpd.GeoDataFrame, gdf_2: gpd.GeoDataFrame)
     
     return points_in_casco
 
-def prepare_centroids(gdf: gpd.GeoDataFrame, value_column: str) -> np.ndarray:
+def prepare_centroids(gdf: gpd.GeoDataFrame, column_name: str) -> np.ndarray:
 
     # Extraer valores de una columna específica
-    values = gdf[value_column].values
+    values = gdf[column_name].values
     print(f"Rango de valores: {values.min():.2f} - {values.max():.2f}")
     
     return values
