@@ -116,7 +116,7 @@ def clip_density_to_urban_area(gdf_1: gpd.GeoDataFrame, gdf_2: gpd.GeoDataFrame)
     
     return points_in_casco
 
-def prepare_centroids(gdf: gpd.GeoDataFrame, column_name: str) -> np.ndarray:
+def extract_centroids(gdf: gpd.GeoDataFrame, column_name: str) -> np.ndarray:
 
     # Extraer valores de una columna específica
     values = gdf[column_name].values
@@ -125,7 +125,7 @@ def prepare_centroids(gdf: gpd.GeoDataFrame, column_name: str) -> np.ndarray:
     return values
 
 
-def prepare_coords(gdf: gpd.GeoDataFrame) -> np.ndarray:
+def extract_coords(gdf: gpd.GeoDataFrame) -> np.ndarray:
 
     # Extraer centroides y convertir a un array de coordenadas
     centroids = np.array([[point.x, point.y] for point in gdf.geometry.centroid])
