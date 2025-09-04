@@ -246,7 +246,7 @@ def prepare_geospatial_bounds(gdf: gpd.GeoDataFrame) -> np.ndarray:
 def write_geotiff(grid_array: np.ndarray, 
                   bounds_proj: np.ndarray, 
                   filename: str, 
-                  crs_epsg: CRS_32721) -> str:
+                  crs_epsg= CRS_32721) -> str:
     # Obtener dimensiones del array
     height, width = grid_array.shape
 
