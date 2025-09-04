@@ -3,9 +3,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import contextily as ctx
 
-
-from pykrige.ok import OrdinaryKriging
 from typing import List,Tuple
+
+from sklearn.gaussian_process import GaussianProcessRegressor
 
 CRS_4326 = 4326
 
@@ -45,7 +45,7 @@ def plot_kriging_results_with_basemap(gdf_coords_epsg_32721: gpd.GeoDataFrame,
                                       bounds: Tuple[float, float, float, float], 
                                       grid_x: np.ndarray, 
                                       grid_y: np.ndarray, 
-                                      model: OrdinaryKriging, 
+                                      model: GaussianProcessRegressor, 
                                       kriging_result: Tuple[object, np.ndarray]) -> plt.Figure:
 
     fig, ax = plt.subplots(figsize=(10, 10))
