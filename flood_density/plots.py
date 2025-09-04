@@ -39,7 +39,7 @@ def city_bounds_and_density_plot(gdf: gpd.GeoDataFrame, centroides: np.ndarray, 
 
     return plt.show()
 
-def plot_kriging_results_with_basemap(gdf: gpd.GeoDataFrame, 
+def plot_kriging_results_with_basemap(gdf_coords_epsg_32721: gpd.GeoDataFrame, 
                                       coords: np.ndarray, 
                                       values: np.ndarray,
                                       bounds: Tuple[float, float, float, float], 
@@ -57,7 +57,7 @@ def plot_kriging_results_with_basemap(gdf: gpd.GeoDataFrame,
     contour = ax.contourf(grid_x, grid_y, grid_z, levels=30, cmap='viridis', alpha=0.5)
 
     # Plotear los polígonos originales con bordes
-    gdf.plot(column='Z', 
+    gdf_coords_epsg_32721.plot(column='Z', 
                cmap='viridis',
                alpha=0.5,
                edgecolor='black',
