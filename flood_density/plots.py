@@ -1,13 +1,14 @@
-import geopandas as gpd
-import numpy as np
-import matplotlib.pyplot as plt
+
+from typing import List, Tuple
+
 import contextily as ctx
-
-from typing import List,Tuple
-
+import geopandas as gpd
+import matplotlib.pyplot as plt
+import numpy as np
 from sklearn.gaussian_process import GaussianProcessRegressor
 
 CRS_4326 = 4326
+
 
 def plot_gdf(gdf: gpd.GeoDataFrame):
     return gdf.plot()
