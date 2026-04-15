@@ -32,15 +32,11 @@ Este repositorio aún está en fase de desarrollo.
 
 Este proyecto está licenciado bajo la MIT License (archivo LICENSE para más detalles).
 
-# ¿Te gusta este proyecto?
-
-Si quieres contribuir de alguna forma, puedes comprarme un cafecito <3 - https://cafecito.app/andreasoledadguerra - ¡Muchas gracias!
-
 # Contacto
 
 Autora: Andy
 GitHub: @andreasoledadguerra
-Email: andrea.guerral@outlook.com.ar
+Email: andreasolguerra@gmail.com
 
 # Agradecimientos 
 
