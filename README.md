@@ -1,5 +1,3 @@
-# flood-insurance-lead-detection
-
 # Segmentación de potenciales afectados en zonas inundables de la ciudad de La Plata.
 
 Este proyecto tiene como fin, a partir de un mapa de peligrosidad de inundaciones de la ciudad de La Plata,  detectar la densidad poblacional de dicho lugar y hallar potenciales afectados. En tal proyecto se mostrará lo siguiente:
@@ -34,7 +32,7 @@ Este proyecto está licenciado bajo la MIT License (archivo LICENSE para más de
 
 # Contacto
 
-Autora: Andy
+Autora: Andrea Soledad Guerra
 GitHub: @andreasoledadguerra
 Email: andreasolguerra@gmail.com
 
