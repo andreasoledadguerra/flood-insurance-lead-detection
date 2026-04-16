@@ -43,3 +43,16 @@ def build_interpolation_grid(
     bounds = gdf_polygon.total_bounds
     grid_x, grid_y, grid_coords = interpolate_grid(bounds, step=step)
     return grid_x, grid_y, grid_coords
+
+def fit_and_predict(
+    gpr_model: GaussianProcessRegressor,
+    coordinates: np.ndarray,
+    centroids: np.ndarray,
+    predict_grid: np.ndarray,
+    grid_shape: tuple,
+) -> tuple[GaussianProcessRegressor, np.ndarray]:
+    """Etapa 3: ajuste del modelo GPR y conversión a grilla 2D."""
+    gpr_fit = fit_gpr_model(gpr_model, coordinates, centroids)
+    grid_2d = convert_to_2d_grid(predict_grid, grid_shape)
+    return gpr_fit, grid_2d
+
