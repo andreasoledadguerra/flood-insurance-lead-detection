@@ -2,6 +2,8 @@
 from shapely.geometry import Polygon
 
 
+class Geometry:
+    def __init__(self):
 
 ##Function that convert dictionary of coordinates in polygon
 #    def coordinates_to_box(coord : dict)-> Polygon:
