@@ -28,13 +28,15 @@ st.write("Le damos la bienvenida a la Aplicación de Detección de Inundaciones 
 
 
 # --------- Pipeline --------------------------
-flood_data = run_flood_pipeline
-casco_urbano = clip_density_to_urban_area(gdf_lp_coordinates,gdf_peligrosidad)
-coordinates_lp = extract_coords_from_geometry(casco_urbano_utm)
-centroids_lp = extract_centroids_from_gdf(casco_urbano_utm, 'Z')
-bounds_lp = gdf_la_plata_from_polygon.total_bounds 
-grid_x, grid_y, grid_coords = interpolate_grid(bounds_lp, step=100)
-gpr_kriging_fit = fit_gpr_model(gpr_model_kriging, coordinates_lp, centroids_lp)
-grid_2d_lp = convert_to_2d_grid(predict_grid_lp, grid_x.shape)
+flood_data = run_flood_pipeline(
+    gdf_coordinates=gdf_lp_coordinates,
+    gdf_peligrosidad=gdf_peligrosidad,
+    casco_urbano_utm=casco_urbano_utm,
+    gdf_polygon=gdf_la_plata_from_polygon,
+    gpr_model=gpr_model_kriging,
+    predict_grid=predict_grid_lp,
+    grid_step=100,
+)
+
 
 #plot_kriging_results_with_basemap(casco_urbano_utm, coordinates_lp, centroids_lp, bounds_lp, grid_x, grid_y, gpr_kriging_fit, grid_2d_lp)
