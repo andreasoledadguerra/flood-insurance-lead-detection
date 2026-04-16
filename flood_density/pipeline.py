@@ -35,3 +35,11 @@ def build_urban_area(
     centroids = extract_centroids_from_gdf(casco_urbano_utm, "Z")
     return casco_urbano, coordinates, centroids
 
+def build_interpolation_grid(
+    gdf_polygon: GeoDataFrame,
+    step: int = 100,
+) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """Etapa 2: construcción de la grilla de interpolación."""
+    bounds = gdf_polygon.total_bounds
+    grid_x, grid_y, grid_coords = interpolate_grid(bounds, step=step)
+    return grid_x, grid_y, grid_coords
