@@ -12,3 +12,16 @@ from flood_density.preprocess import (
     convert_to_2d_grid,
 )
 
+@dataclass
+class UrbanFloodData:
+    casco_urbano: GeoDataFrame
+    coordinates: np.ndarray
+    centroids: np.ndarray
+    bounds: np.ndarray
+    grid_x: np.ndarray
+    grid_y: np.ndarray
+    gris_coords: np.ndarray
+    gpr_fit: GaussianProcessRegressor
+    grid_2d: np.ndarray
+
+    
