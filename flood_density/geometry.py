@@ -23,3 +23,8 @@ class Geometry:
            (coordinates["x_min"], coordinates["y_max"]),   # NW (noroeste)
            (coordinates["x_min"], coordinates["y_min"])    # Cerrar polígono
        ])
+    
+    def points_geocoordinates(df: pd.DataFrame) -> Polygon:
+     # Crear geometría de puntos usando X,Y como longitud,latitud
+     geometry = [Point(xy) for xy in zip(df['X'], df['Y'])]
+     return Polygon(geometry)
