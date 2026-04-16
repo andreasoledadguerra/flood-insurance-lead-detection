@@ -1,5 +1,6 @@
 
-from shapely.geometry import Polygon
+import pandas as pd
+from shapely.geometry import Point,Polygon
 
 
 class Geometry:
