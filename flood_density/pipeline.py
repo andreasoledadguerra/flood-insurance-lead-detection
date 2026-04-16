@@ -56,3 +56,37 @@ def fit_and_predict(
     grid_2d = convert_to_2d_grid(predict_grid, grid_shape)
     return gpr_fit, grid_2d
 
+def run_flood_pipeline(
+    gdf_coordinates: GeoDataFrame,
+    gdf_peligrosidad: GeoDataFrame,
+    casco_urbano_utm: GeoDataFrame,
+    gdf_polygon: GeoDataFrame,
+    gpr_model: GaussianProcessRegressor,
+    predict_grid: np.ndarray,
+    grid_step: int = 100,
+) -> UrbanFloodData:
+    """
+    Orquesta el pipeline completo y devuelve un dataclass con todos
+    los artefactos listos para graficar o consumir desde la UI.
+    """
+    casco_urbano, coordinates, centroids = build_urban_area(
+        gdf_coordinates, gdf_peligrosidad, casco_urbano_utm
+    )
+
+    grid_x, grid_y, grid_coords = build_interpolation_grid(gdf_polygon, step=grid_step)
+
+    gpr_fit, grid_2d = fit_and_predict(
+        gpr_model, coordinates, centroids, predict_grid, grid_x.shape
+    )
+
+    return UrbanFloodData(
+        casco_urbano=casco_urbano,
+        coordinates=coordinates,
+        centroids=centroids,
+        bounds=gdf_polygon.total_bounds,
+        grid_x=grid_x,
+        grid_y=grid_y,
+        grid_coords=grid_coords,
+        gpr_fit=gpr_fit,
+        grid_2d=grid_2d,
+    )
