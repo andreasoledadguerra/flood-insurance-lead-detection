@@ -66,16 +66,6 @@ class PreProcessData:
         return city_data
 
 
-    def extract_bounds_polygon(coordinates: Dict[str, float]) -> Polygon:
-
-        return Polygon([
-            (coordinates["x_min"], coordinates["y_min"]),   # SW (suroeste)
-            (coordinates["x_max"], coordinates["y_min"]),   # SE (sureste)  
-            (coordinates["x_max"], coordinates["y_max"]),   # NE (noreste)
-            (coordinates["x_min"], coordinates["y_max"]),   # NW (noroeste)
-            (coordinates["x_min"], coordinates["y_min"])    # Cerrar polígono
-        ])
-
 
     # Convertir el polígono en un geodataframe
     def polygon_to_gdf(polygon: Polygon, crs= CRS_4326) -> gpd.GeoDataFrame:
