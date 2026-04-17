@@ -1,4 +1,5 @@
 import numpy as np
+import geopandas as gpd
 from typing import Tuple
 from sklearn.gaussian_process import GaussianProcessRegressor
 from sklearn.gaussian_process.kernels import (
