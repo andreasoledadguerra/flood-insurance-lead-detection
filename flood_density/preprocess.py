@@ -111,13 +111,6 @@ class PreProcessData:
         return centroids
 
 
-
-    def prepare_geospatial_bounds(gdf: gpd.GeoDataFrame) -> np.ndarray:
-
-        # Obtener límites en coordenadas proyectadas
-        bounds_proj = gdf.total_bounds  # [xmin, ymin, xmax, ymax]
-        return bounds_proj
-
     def write_geotiff(grid_array: np.ndarray, 
                       bounds_proj: np.ndarray, 
                       filename: str, 

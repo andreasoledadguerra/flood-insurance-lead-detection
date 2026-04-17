@@ -118,8 +118,14 @@ class KrigingModel:
         # Extraer valores de una columna específica 
         values = gdf[column_name].values
         print(f"Rango de valores: {values.min():.2f} - {values.max():.2f}")
-    
+
         return values
+
+    def prepare_geospatial_bounds(gdf: gpd.GeoDataFrame) -> np.ndarray:
+
+        # Obtener límites en coordenadas proyectadas
+        bounds_proj = gdf.total_bounds  # [xmin, ymin, xmax, ymax]
+        return bounds_proj
 
     # Run in main.py
     def run_kriging_pipeline(
