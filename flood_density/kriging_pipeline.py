@@ -113,3 +113,26 @@ class KrigingModel:
         ss_2d = ss.reshape(grid_shape)
 
         return z_2d, ss_2d
+    
+    def extract_centroids_from_gdf(gdf: gpd.GeoDataFrame, column_name: str) -> np.ndarray:
+        # Extraer valores de una columna específica 
+        values = gdf[column_name].values
+        print(f"Rango de valores: {values.min():.2f} - {values.max():.2f}")
+    
+        return values
+
+    # Run in main.py
+    def run_kriging_pipeline(
+        grid_2d_lp: np.ndarray, 
+        gdf_la_plata_from_polygon: gpd.GeoDataFrame, 
+        step: int = 100
+    ) -> str:
+        grid_lp = extract_grid_from_tuple(grid_2d_lp)
+        geo_bounds_lp = prepare_geospatial_bounds(gdf_la_plata_from_polygon)
+        geotiff_file = write_geotiff(
+            grid_lp, 
+            geo_bounds_lp, 
+            'kriging_densidad_poblacional.tif', 
+            32721
+        )
+        return geotiff_file

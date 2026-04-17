@@ -101,13 +101,6 @@ class PreProcessData:
 
         return points_in_casco
 
-    def extract_centroids_from_gdf(gdf: gpd.GeoDataFrame, column_name: str) -> np.ndarray:
-
-        # Extraer valores de una columna específica
-        values = gdf[column_name].values
-        print(f"Rango de valores: {values.min():.2f} - {values.max():.2f}")
-
-        return values
 
 
     def extract_coords_from_geometry(gdf: gpd.GeoDataFrame) -> np.ndarray:
