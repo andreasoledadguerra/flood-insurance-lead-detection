@@ -34,7 +34,7 @@ class SpatialGrid:
         ss_2d = ss.reshape(grid_shape)
         return z_2d, ss_2d
     
-
+    @staticmethod
     def write_geotiff(grid_array: np.ndarray, 
                   bounds_proj: np.ndarray, 
                   filename: str, 
@@ -53,7 +53,8 @@ class SpatialGrid:
             width=width,
             count=1,
             dtype=grid_array.dtype,
-            crs=CRS.from_epsg(crs_epsg),
+            #crs=CRS_32721.from_epsg(crs_epsg),
+            crs=crs_epsg,
             transform=transform,
             compress='lzw'
         ) as dst:
