@@ -9,6 +9,9 @@ from sklearn.gaussian_process.kernels import (
     WhiteKernel,
 )
 
+from spatial_utils import SpatialGrid
+
+
 class KrigingModel:
     """ Encapsula el ciclo completo de Kriging: kernel -> modelo -> fit -> predicción -> grilla"""
 
@@ -140,5 +143,5 @@ class KrigingModel:
         #grid_lp = extract_grid_from_tuple(grid_2d_lp)
         z_2d, _ = grid_2d_lp                                              
         geo_bounds = KrigingModel.prepare_geospatial_bounds(gdf_la_plata_from_polygon)
-        return write_geotiff(z_2d, geo_bounds, output_filename, crs_epsg)
+        return SpatialGrid.write_geotiff(z_2d, geo_bounds, output_filename, crs_epsg)
         
