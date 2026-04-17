@@ -19,8 +19,7 @@ from sklearn.gaussian_process.kernels import (
     WhiteKernel,
 )
 
-CRS_4326 = 4326
-CRS_32721 = 32721
+
 
 class PreProcessData:
     
