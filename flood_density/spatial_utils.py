@@ -1,8 +1,9 @@
 import numpy as np
 from typing import Tuple
 
-#class SpatialGrid:
-        
+class SpatialGrid:
+
+    @staticmethod   
     def interpolate_grid(
             bounds: Tuple[float, float, float, float],
             step: int = 100
@@ -16,19 +17,15 @@ from typing import Tuple
 
             return grid_x, grid_y, grid_coords
 
-
-        def convert_to_2d_grid(
-            data: Tuple[np.ndarray, np.ndarray], 
-            grid_shape: Tuple[int, int]
-        ) -> Tuple[np.ndarray, np.ndarray]:
-
-            # Desempaquetar la tupla data
-            z, ss = data 
-
-            # Convertir a grillas 2D los valores predichos
-            z_2d = z.reshape(grid_shape)
-
-            # Convertir a grillas 2D las desviacciones estándar(incertidumbre)
-            ss_2d = ss.reshape(grid_shape)
-
-            return z_2d, ss_2d
+    @staticmethod
+    def convert_to_2d_grid(
+        data: Tuple[np.ndarray, np.ndarray], 
+        grid_shape: Tuple[int, int]
+    ) -> Tuple[np.ndarray, np.ndarray]:
+        # Desempaquetar la tupla data
+        z, ss = data 
+        # Convertir a grillas 2D los valores predichos
+        z_2d = z.reshape(grid_shape)
+        # Convertir a grillas 2D las desviacciones estándar(incertidumbre)
+        ss_2d = ss.reshape(grid_shape)
+        return z_2d, ss_2d
