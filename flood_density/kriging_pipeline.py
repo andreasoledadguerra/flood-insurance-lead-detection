@@ -1,3 +1,12 @@
+import numpy as np
+from typing import Tuple
+from sklearn.gaussian_process import GaussianProcessRegressor
+from sklearn.gaussian_process.kernels import (
+    ConstantKernel,
+    Kernel,
+    RBF,
+    WhiteKernel,
+)
 
 class KrigingModel:
     def __init__(self):
