@@ -98,11 +98,6 @@ class KrigingModel:
         z, ss = model.predict(grid_coords, return_std=True)
         return z, ss
     
-
-
-
-
-    
     
     def extract_centroids_from_gdf(gdf: gpd.GeoDataFrame, column_name: str) -> np.ndarray:
         # Extraer valores de una columna específica 
@@ -118,18 +113,32 @@ class KrigingModel:
         return bounds_proj
 
 
+    # -------------------------------------------------------------------------
+    # 3. Pipeline completo
+    # -------------------------------------------------------------------------
+
     # Run in main.py
+
     def run_kriging_pipeline(
-        grid_2d_lp: np.ndarray, 
+        grid_2d_lp: Tuple[np.ndarray, np.ndarray], 
         gdf_la_plata_from_polygon: gpd.GeoDataFrame, 
-        step: int = 100
+        output_filename: str = "kriging_densidad_poblacional.tif",
+        crs_epsg: int = 32721,
     ) -> str:
-        grid_lp = extract_grid_from_tuple(grid_2d_lp)
-        geo_bounds_lp = prepare_geospatial_bounds(gdf_la_plata_from_polygon)
-        geotiff_file = write_geotiff(
-            grid_lp, 
-            geo_bounds_lp, 
-            'kriging_densidad_poblacional.tif', 
-            32721
-        )
-        return geotiff_file
+        
+        """
+        Orquesta la exportación del resultado de kriging a GeoTIFF.
+
+        Parámetros:
+        -----------
+        grid_2d_lp              : tupla (z_2d, ss_2d) con la grilla predicha
+        gdf_la_plata_from_polygon: GeoDataFrame con el polígono de La Plata
+        output_filename         : nombre del archivo GeoTIFF de salida
+        crs_epsg                : código EPSG del sistema de referencia
+        """
+
+        #grid_lp = extract_grid_from_tuple(grid_2d_lp)
+        z_2d, _ = grid_2d_lp                                              
+        geo_bounds = KrigingModel.prepare_geospatial_bounds(gdf_la_plata_from_polygon)
+        return write_geotiff(z_2d, geo_bounds, output_filename, crs_epsg)
+        
