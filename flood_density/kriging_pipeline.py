@@ -12,6 +12,10 @@ from sklearn.gaussian_process.kernels import (
 class KrigingModel:
     """ Encapsula el ciclo completo de Kriging: kernel -> modelo -> fit -> predicción -> grilla"""
 
+    # -------------------------------------------------------------------------
+    # 1. Construcción del kernel y modelo
+    # -------------------------------------------------------------------------
+
     def create_kriging_kernel(
         constant_value: float =1.0, 
         length_scale: float =1000.0, 
@@ -55,12 +59,12 @@ class KrigingModel:
         # Combinar kernels: (Constante * RBF) + Ruido
         return constant_kernel * rbf_kernel + noise_kernel
 
-        
     
      # Generar el modelo GaussianProcessRegressor
     def create_gpr_model(kernel: Kernel) -> GaussianProcessRegressor:
-        gpr = GaussianProcessRegressor(kernel=kernel, alpha=1e-6, n_restarts_optimizer=10)
-        return gpr
+        """Instancia el GaussianProcessRegressor con el kernel dado."""
+        return GaussianProcessRegressor(kernel=kernel, alpha=1e-6, n_restarts_optimizer=10)
+
 
     # Ajustar el modelo GPR a los datos
     def fit_gpr_model(
