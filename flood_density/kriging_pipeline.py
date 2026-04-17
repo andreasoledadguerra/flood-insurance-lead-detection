@@ -10,12 +10,15 @@ from sklearn.gaussian_process.kernels import (
 )
 
 class KrigingModel:
-    def __init__(self):
-        pass
+    """ Encapsula el ciclo completo de Kriging: kernel -> modelo -> fit -> predicción -> grilla"""
 
-     # Función para crear un kernel de Kriging
-    def create_kriging_kernel(constant_value=1.0, length_scale=1000.0, noise_level=0.1,
-                             length_scale_bounds=(1e-5, 1e5), noise_level_bounds=(1e-10, 1e3)):
+    def create_kriging_kernel(
+        constant_value: float =1.0, 
+        length_scale: float =1000.0, 
+        noise_level: float=0.1,
+        length_scale_bounds: Tuple[float,float]=(1e-5, 1e5), 
+        noise_level_bounds: Tuple[float, float]=(1e-10, 1e3),
+        ) -> Kernel:
         """
         Crea un kernel para un modelo de Kriging (Gaussian Process).
 
@@ -45,17 +48,14 @@ class KrigingModel:
 
         # Kernel constante (amplitud)
         constant_kernel = ConstantKernel(constant_value, constant_value_bounds="fixed")
-
         # Kernel RBF (correlación espacial)
         rbf_kernel = RBF(length_scale=length_scale, length_scale_bounds=length_scale_bounds)
-
         # Kernel de ruido
         noise_kernel = WhiteKernel(noise_level=noise_level, noise_level_bounds=noise_level_bounds)
-
         # Combinar kernels: (Constante * RBF) + Ruido
-        kernel = constant_kernel * rbf_kernel + noise_kernel
+        return constant_kernel * rbf_kernel + noise_kernel
 
-        return kernel
+        
     
      # Generar el modelo GaussianProcessRegressor
     def create_gpr_model(kernel: Kernel) -> GaussianProcessRegressor:
@@ -127,6 +127,7 @@ class KrigingModel:
         # Obtener límites en coordenadas proyectadas
         bounds_proj = gdf.total_bounds  # [xmin, ymin, xmax, ymax]
         return bounds_proj
+
 
     # Run in main.py
     def run_kriging_pipeline(
