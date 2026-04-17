@@ -66,13 +66,41 @@ class KrigingModel:
         return GaussianProcessRegressor(kernel=kernel, alpha=1e-6, n_restarts_optimizer=10)
 
 
-    # Ajustar el modelo GPR a los datos
-    def fit_gpr_model(
-        gpr: GaussianProcessRegressor, coords: np.ndarray, values: np.ndarray) -> GaussianProcessRegressor:
+    # -------------------------------------------------------------------------
+    # 2. Fit y predicción
+    # -------------------------------------------------------------------------
 
+    def fit_gpr_model(
+        gpr: GaussianProcessRegressor, 
+        coords: np.ndarray, 
+        values: np.ndarray
+    ) -> GaussianProcessRegressor:
+        """Ajusta el modelo GPR a las coordenadas y valores observados."""
         gpr.fit(coords, values)
         return gpr
 
+    def predict_grid(
+        model: GaussianProcessRegressor, 
+        #grid: Tuple[np.ndarray, np.ndarray, np.ndarray]
+        grid_coords: np.ndarray,          # ← recibe solo coords aplanadas, sin tupla
+    ) -> Tuple[np.ndarray, np.ndarray]:
+        """
+        Predice media (z) e incertidumbre (ss) sobre una grilla de coordenadas.
+
+        Separado de interpolate_grid para poder reutilizar
+        cualquier grilla externa sin recronstruirla.
+        """
+        # Desempaquetar la tupla grid
+        #grid_x, grid_y, _ = grid
+        # Preparar puntos para predicción
+        #points = np.column_stack((grid_x.ravel(), grid_y.ravel()))
+
+        z, ss = model.predict(grid_coords, return_std=True)
+        return z, ss
+    
+
+
+    
 
     def interpolate_grid(
         bounds: Tuple[float, float, float, float],
@@ -87,21 +115,6 @@ class KrigingModel:
 
         return grid_x, grid_y, grid_coords
 
-    def predict_grid(
-        model: GaussianProcessRegressor, 
-        grid: Tuple[np.ndarray, np.ndarray, np.ndarray]
-    ) -> Tuple[np.ndarray, np.ndarray]:
-
-        # Desempaquetar la tupla grid
-        grid_x, grid_y, _ = grid
-
-        # Preparar puntos para predicción
-        points = np.column_stack((grid_x.ravel(), grid_y.ravel()))
-
-        # Predecir
-        z, ss = model.predict(points, return_std=True)
-
-        return z, ss
 
     def convert_to_2d_grid(
         data: Tuple[np.ndarray, np.ndarray], 
