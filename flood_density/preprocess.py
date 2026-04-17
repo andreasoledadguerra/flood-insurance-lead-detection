@@ -26,15 +26,6 @@ class PreProcessData:
     def __init__(self, df: pd.DataFrame):
         self.df = df
 
-
-    def convert_kml_to_gdf(kml_file: str) -> gpd.GeoDataFrame:
-        gdf = gpd.read_file(kml_file, driver="KML")
-        return gdf
-
-    def export_to_geojson(gdf: gpd.GeoDataFrame, output_path: str) -> gpd.GeoDataFrame:
-        gdf.to_file(output_path, driver='GeoJSON')
-        return gdf
-
     def get_bounds_xy_min_max(gdf: gpd.GeoDataFrame) -> Dict[str,float]:
         # Extraer límites
         minx, miny, maxx, maxy = gdf.total_bounds
