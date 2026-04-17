@@ -118,11 +118,6 @@ class PreProcessData:
         return centroids
 
 
-   
-
-
-   
-
 
     def prepare_geospatial_bounds(gdf: gpd.GeoDataFrame) -> np.ndarray:
 
@@ -158,18 +153,3 @@ class PreProcessData:
 
         return filename
 
-    def run_kriging_pipeline(
-        grid_2d_lp: np.ndarray, 
-        gdf_la_plata_from_polygon: gpd.GeoDataFrame, 
-        step: int = 100
-    ) -> str:
-
-        grid_lp = extract_grid_from_tuple(grid_2d_lp)
-        geo_bounds_lp = prepare_geospatial_bounds(gdf_la_plata_from_polygon)
-        geotiff_file = write_geotiff(
-            grid_lp, 
-            geo_bounds_lp, 
-            'kriging_densidad_poblacional.tif', 
-            32721
-        )
-        return geotiff_file

@@ -1,5 +1,6 @@
 
 import pandas as pd
+from typing import Dict, List
 from shapely.geometry import box, Point, Polygon
 
 
@@ -8,7 +9,7 @@ class Geometry:
        pass
 
     #Function that convert dictionary of coordinates in polygon
-    @staticmethod
+    #@staticmethod
     def coordinates_to_box(coord : dict)-> Polygon:
     
         return box(
@@ -18,7 +19,7 @@ class Geometry:
             coord['y_max'],
         )
     
-    @staticmethod
+    #@staticmethod
     def extract_bounds_polygon(coordinates: Dict[str, float]) -> Polygon:
        return Polygon([
            (coordinates["x_min"], coordinates["y_min"]),   # SW (suroeste)
@@ -28,7 +29,7 @@ class Geometry:
            (coordinates["x_min"], coordinates["y_min"])    # Cerrar polígono
        ])
     
-    @staticmethod
+    #@staticmethod
     def points_geocoordinates(df: pd.DataFrame) -> Polygon:
      # Crear geometría de puntos usando X,Y como longitud,latitud
      geometry = [Point(xy) for xy in zip(df['X'], df['Y'])]
